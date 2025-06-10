@@ -1,7 +1,6 @@
-const { User } = require("../models/user.model");
-
 const { createJWTToken } = require("../utils/jwt.util");
 const { createHash, compareHash } = require("../utils/hash.util");
+const User = require("../modles/user.model");
 
 const signIn = async (data) => {
   const { email, password } = data;
