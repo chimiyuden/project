@@ -88,7 +88,8 @@ const signOut = async ( req,res) => {
 module.exports = {
   signIn,
   signUp,
-  signOut
+  signOut,
+  
   
 };
 
