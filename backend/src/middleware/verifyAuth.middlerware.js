@@ -1,8 +1,7 @@
-const verifyAuth = require("../../../../book-library/middlewares/verifyAuth.middleware");
 const RevokedToken = require("../modles/revokedToken");
 const { verifyJWTToken } = require("../utils/jwt.util");
 
-const verifyJWTToken = async (req, res, next) => {
+const verifyAuth = async (req, res, next) => {
   const authHeader = req.headers.authorization;
   if (!authHeader) {
     return res
