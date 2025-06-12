@@ -1,5 +1,6 @@
 const RevokedToken = require("../modles/revokedToken");
 const { verifyJWTToken } = require("../utils/jwt.util");
+// const { verifyJWTToken } = require("../utils/jwt.util")
 
 const verifyAuth = async (req, res, next) => {
   const authHeader = req.headers.authorization;

@@ -36,7 +36,7 @@ const createBook = async (req, res) => {
   const newBook = req.body;
 
   const keys = Object.keys(newBook);
-  const requireKeys = ["title", "author", "publishedYear"];
+  const requireKeys = ["title", "author", "year", "genre"];
 
   const missingKeys = requireKeys.filter((key) => !keys.includes(key));
 
@@ -48,7 +48,7 @@ const createBook = async (req, res) => {
 
   if (typeof newBook.year !== "number") {
     return res.status(400).json({
-      message: `publishedYear should be a number`,
+      message: `year should be a number`,
     });
   }
   const createdBook = await booksService.createBook(newBook);
@@ -66,7 +66,7 @@ const updateBookById = async (req, res) => {
   const newBook = req.body;
 
   const keys = Object.keys(newBook);
-  const requireKeys = ["title", "author", "publishedYear"];
+  const requireKeys = ["title", "author", "year", "genre"];
   const missingKeys = requireKeys.filter((key) => !keys.includes(key));
 
   if (missingKeys.length > 0) {
@@ -77,7 +77,7 @@ const updateBookById = async (req, res) => {
 
   if (typeof newBook.year !== "number") {
     return res.status(400).json({
-      message: `published Year should be a number`,
+      message: ` Year should be a number`,
     });
   }
   const updateBook = await booksService.updateBookById(id, newBook);
