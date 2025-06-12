@@ -1,6 +1,7 @@
 const { createJWTToken } = require("../utils/jwt.util");
 const { createHash, compareHash } = require("../utils/hash.util");
 const User = require("../modles/user.model");
+const RevokedToken = require("../../../../book-library/models/revokedToken.model");
 
 const signIn = async (data) => {
   const { email, password } = data;
@@ -37,7 +38,13 @@ const signUp = async (data) => {
   return { user: savedUser };
 };
 
+const signOut = async (token) => {
+  const newToken = new RevokedToken({ token });
+  await newToken.save();
+};
+
 module.exports = {
   signIn,
   signUp,
+  signOut,
 };

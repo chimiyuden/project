@@ -73,9 +73,24 @@ const signUp = async (req, res) => {
   res.status(201).json({ message: `User with ${email} created successfully` });
 };
 
+const signOut = async ( req,res) => {
+  const authHeader = req.headers.authorization;
+  const token = authHeader.split("")[1];
+
+  await authService.signOut(token);
+
+  res.status (204).json({ 
+    message: ` Signout successfully`
+  });
+};
+
 
 module.exports = {
   signIn,
   signUp,
+  signOut,
+  
   
 };
+
+
