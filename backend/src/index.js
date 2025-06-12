@@ -1,7 +1,7 @@
 const express = require("express");
-const connectMongoDB = require("./db/mongo.bd");
 const booksRoutes = require("./routes/books.route");
 const authRoutes = require("./routes/auth.route");
+const connectMongoDB = require("./db/mongo.bd");
 
 connectMongoDB();
 const app = express();
