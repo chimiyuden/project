@@ -4,7 +4,7 @@ const createJWTToken = (data) => {
   return jwt.sign(data, jwtSecret);
 };
 
-const verifyJWToken = (token) => {
+const verifyJWTToken = (token) => {
   try {
     const decoded = jwt.verify(token, jwtSecret);
     return decoded;
@@ -14,4 +14,4 @@ const verifyJWToken = (token) => {
   }
 };
 
-module.exports = { createJWTToken, verifyJWToken };
+module.exports = { createJWTToken, verifyJWTToken };

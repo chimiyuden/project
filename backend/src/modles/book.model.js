@@ -6,7 +6,7 @@ const BookSchema = new mongoose.Schema({
   author: { type: String, required: true },
   genre: {
     type: String,
-    enum: ["Science Fiction", "Mystery", "Fantasy", "Romance"],
+    enum: ["Science Fiction", "Mystery", "Fantasy", "Romance", "Fictional"],
     required: true,
   },
   year: { type: Number, required: true },

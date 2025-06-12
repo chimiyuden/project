@@ -1,7 +1,7 @@
 const { createJWTToken } = require("../utils/jwt.util");
 const { createHash, compareHash } = require("../utils/hash.util");
 const User = require("../modles/user.model");
-const RevokedToken = require("../../../../book-library/models/revokedToken.model");
+const RevokedToken = require("../modles/revokedToken");
 
 const signIn = async (data) => {
   const { email, password } = data;

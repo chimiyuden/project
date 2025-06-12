@@ -40,7 +40,7 @@ const signUp = async (req, res) => {
 
   const { email, password } = req.body;
   const keys = Object.keys(req.body);
-  const requireKeys = ["name", "email", "password", "phoneNumber"];
+  const requireKeys = ["name", "email", "password", "phoneNumber", "gender"];
 
   const missingKeys = requireKeys.filter((key) => !keys.includes(key));
 
@@ -73,24 +73,19 @@ const signUp = async (req, res) => {
   res.status(201).json({ message: `User with ${email} created successfully` });
 };
 
-const signOut = async ( req,res) => {
+const signOut = async (req, res) => {
   const authHeader = req.headers.authorization;
   const token = authHeader.split("")[1];
 
   await authService.signOut(token);
 
-  res.status (204).json({ 
-    message: ` Signout successfully`
+  res.status(204).json({
+    message: ` Signout successfully`,
   });
 };
-
 
 module.exports = {
   signIn,
   signUp,
   signOut,
-  
-  
 };
-
-
