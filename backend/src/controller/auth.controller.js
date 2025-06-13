@@ -50,8 +50,7 @@ const signUp = async (req, res) => {
     });
   }
 
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
-
+  const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_]).{6,}$/;
   if (password.length < 8) {
     return res.status(400).json({
       message: `Password should be more than 8 characters`,
@@ -80,7 +79,7 @@ const signOut = async (req, res) => {
   await authService.signOut(token);
 
   res.status(204).json({
-    message: ` Signout successfully`,
+    message: "Signout succesfully",
   });
 };
 
