@@ -1,9 +1,5 @@
-import AppRoutes from "../../../my-app-cors/src/routes/AppRoutes";
-
-const { useState, useEffect } = require("react");
-const {
-  default: axios,
-} = require("../../../my-app-cors/src/config/axiosConfig");
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function App() {
   const [healthStatus, setHealthStatus] = useState("Checking...");
@@ -15,11 +11,7 @@ function App() {
       .catch(() => setHealthStatus("Faild to fetch health status"));
   }, {});
 
-  return (
-    <div>
-      <AppRoutes />
-    </div>
-  );
+  return <div>hello</div>;
 }
 
 export default App;
