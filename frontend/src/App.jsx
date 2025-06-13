@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 
 function App() {
-  const [healthStatus, setHealthStatus] = useState("Checking...");
+  const [data, setData] = useState(null);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/health")
-      .then((response) => setHealthStatus(response.data))
-      .catch(() => setHealthStatus("Faild to fetch health status"));
-  }, {});
+    fetch("http://localhost:3000/api/data")
+      .then((res) => res.json())
+      .then((data) => setData(data));
+  }, []);
 
-  return <div>hello</div>;
+  return (
+    <div>
+      <h1>Frontend + Backend</h1>
+      <p>Backend says: {data?.message}</p>
+    </div>
+  );
 }
 
 export default App;
