@@ -1,6 +1,6 @@
 const express = require("express");
-const bookController = require("../controller/books.controller");
-const verifyAuth = require("../middleware/verifyAuth.middlerware");
+const bookController = require("../controllers/books.controller");
+const verifyAuth = require("../middlewares/verifyAuth.middlerware");
 
 const booksRoutes = express.Router();
 
