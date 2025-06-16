@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const booksRoutes = require("./routes/books.route");
 const authRoutes = require("./routes/auth.route");
-const connectMongoDB = require("./db/mongo.bd");
+const connectMongoDB = require("./db/mongo.db");
 
 const app = express();
 const PORT = 3000;
