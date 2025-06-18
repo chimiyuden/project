@@ -42,7 +42,7 @@ const Register = () => {
 
       console.log(response.data);
       setError("");
-      setFormData({ ...initialData });
+      setFormData({});
       navigate("/login");
     } catch (error) {
       console.error(error);
