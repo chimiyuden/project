@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "./Register.css"; // Make sure this import is present
 
 const initialData = {
   name: "",
@@ -42,7 +43,7 @@ const Register = () => {
 
       console.log(response.data);
       setError("");
-      setFormData({});
+      setFormData({ ...initialData });
       navigate("/login");
     } catch (error) {
       console.error(error);
@@ -125,13 +126,8 @@ const Register = () => {
 
         <div className="form-group">
           <label className="form-label">Gender</label>
-          <div
-            className="radio-options"
-            style={{ display: "flex", gap: "15px", marginTop: "8px" }}
-          >
-            <label
-              style={{ display: "flex", alignItems: "center", gap: "5px" }}
-            >
+          <div className="radio-options">
+            <label>
               <input
                 type="radio"
                 name="gender"
@@ -141,9 +137,7 @@ const Register = () => {
               />
               Male
             </label>
-            <label
-              style={{ display: "flex", alignItems: "center", gap: "5px" }}
-            >
+            <label>
               <input
                 type="radio"
                 name="gender"
@@ -164,17 +158,8 @@ const Register = () => {
           </button>
         </div>
 
-        <p
-          className="login-link"
-          style={{ textAlign: "center", marginTop: "20px" }}
-        >
-          Already have an account?{" "}
-          <Link
-            to="/login"
-            style={{ color: "#007bff", textDecoration: "none" }}
-          >
-            Sign in
-          </Link>
+        <p className="login-link">
+          Already have an account? <Link to="/login">Sign in</Link>
         </p>
       </form>
     </div>
