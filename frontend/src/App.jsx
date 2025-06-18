@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import AppRoutes from "./routes/AppRoutes";
 
 function App() {
   const [data, setData] = useState(null);
@@ -11,8 +12,9 @@ function App() {
 
   return (
     <div>
-      <h1>Frontend + Backend</h1>
-      <p>Backend says: {data?.message}</p>
+      {/* <h1>Frontend + Backend</h1>
+      <p>Backend says: {data?.message}</p> */}
+      <AppRoutes />
     </div>
   );
 }
