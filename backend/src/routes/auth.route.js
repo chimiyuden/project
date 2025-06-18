@@ -10,4 +10,6 @@ authRoutes.post("/signup", authController.signUp);
 
 authRoutes.delete("/signout", verifyAuth, authController.signOut);
 
+authRoutes.get("/loginuser", verifyAuth, authController.getLoggedInUser);
+
 module.exports = authRoutes;
