@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { getAllBooks } from "../api/api";
+import "./Library.css"; // Make sure to import the CSS file
 
 const Home = () => {
   const [books, setBooks] = useState([]);
@@ -48,7 +49,7 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <nav>
         <div>MyLibrary</div>
         <div>
@@ -58,25 +59,25 @@ const Home = () => {
       </nav>
 
       <div>
-        <div>
+        <div className="library-header">
           <h1>Book Collection</h1>
           <button onClick={handleAddBook}>Add Book</button>
         </div>
 
-        <div>
+        <div className="book-list">
           {books.length > 0 ? (
             books.map((book) => (
-              <div key={book._id}>
-                <div>
-                  <h3>{book.title}</h3>
-                  <p>by {book.author}</p>
-                  <div>
-                    <span>{book.genre}</span>
-                    <span>{book.year}</span>
+              <div key={book._id} className="book-card">
+                <div className="book-info">
+                  <h3 className="book-title">{book.title}</h3>
+                  <p className="book-author">by {book.author}</p>
+                  <div className="book-meta">
+                    <span className="book-genre">{book.genre}</span>
+                    <span className="book-year">{book.year}</span>
                   </div>
-                  {book.completed && <span>Read</span>}
+                  {book.completed && <span className="read-status">Read</span>}
                 </div>
-                <div>
+                <div className="book-actions">
                   <button onClick={() => handleEditBook(book)}>Edit</button>
                   <button onClick={() => handleDeleteBook(book._id)}>
                     Delete
@@ -85,13 +86,15 @@ const Home = () => {
               </div>
             ))
           ) : (
-            <div>Your library is empty. Add some books!</div>
+            <div className="empty-library">
+              Your library is empty. Add some books!
+            </div>
           )}
         </div>
 
         {isDialogOpen && (
-          <div>
-            <div>
+          <div className="dialog-overlay">
+            <div className="dialog">
               <BookForm
                 book={currentBook}
                 onSave={handleSaveBook}
@@ -137,10 +140,10 @@ const BookForm = ({ book, onSave, onClose }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="book-form" onSubmit={handleSubmit}>
       <h2>{book ? "Edit Book" : "Add New Book"}</h2>
 
-      <div>
+      <div className="form-group">
         <label>Title</label>
         <input
           type="text"
@@ -151,7 +154,7 @@ const BookForm = ({ book, onSave, onClose }) => {
         />
       </div>
 
-      <div>
+      <div className="form-group">
         <label>Author</label>
         <input
           type="text"
@@ -162,7 +165,7 @@ const BookForm = ({ book, onSave, onClose }) => {
         />
       </div>
 
-      <div>
+      <div className="form-group">
         <label>Genre</label>
         <select
           name="genre"
@@ -178,7 +181,7 @@ const BookForm = ({ book, onSave, onClose }) => {
         </select>
       </div>
 
-      <div>
+      <div className="form-group">
         <label>Year</label>
         <input
           type="number"
@@ -190,7 +193,7 @@ const BookForm = ({ book, onSave, onClose }) => {
         />
       </div>
 
-      <div>
+      <div className="form-group checkbox">
         <label>
           <input
             type="checkbox"
@@ -202,7 +205,7 @@ const BookForm = ({ book, onSave, onClose }) => {
         </label>
       </div>
 
-      <div>
+      <div className="form-actions">
         <button type="button" onClick={onClose}>
           Cancel
         </button>
