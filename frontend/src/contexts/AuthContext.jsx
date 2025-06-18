@@ -1,3 +1,4 @@
+import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext();
@@ -14,20 +15,17 @@ export const AuthProvider = ({ children }) => {
   const getLoggedInUser = async () => {
     try {
       setLoggedIn(true);
-      const token = localStorage.getItem("seng-token");
+      const token = localStorage.getItem("mylibrary-token");
       if (!token) {
         setLoggedIn(false);
         setloading(false);
         return;
       }
-      const response = await axios.get(
-        "http://localhost:3000/auth/loggedin-user",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.get("http://localhost:3000/auth/loginuser", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setLoggedIn(true);
       setUser(response.data.user);
       setloading(false);
@@ -39,7 +37,7 @@ export const AuthProvider = ({ children }) => {
   };
   const logout = async () => {
     try {
-      const token = localStorage.getItem("seng-token");
+      const token = localStorage.getItem("mylibrary-token");
       if (!token) {
         setLoggedIn(false);
         setloading(false);
@@ -52,7 +50,7 @@ export const AuthProvider = ({ children }) => {
       });
       setLoggedIn(false);
       setUser({});
-      localStorage.setItem("seng-token", "");
+      localStorage.setItem("mylibrary-token", "");
     } catch (error) {
       console.error(error);
       setLoggedIn(false);

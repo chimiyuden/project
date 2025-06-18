@@ -1,4 +1,12 @@
-import axios from "../configs/axiosConfig"; 
+import axios from "../configs/axiosConfig";
+
+const registerUser = async (formData) => {
+  return axios.post("/auth/signup", formData);
+};
+
+const loginUser = async (formData) => {
+  return axios.post("/auth/signin", formData);
+};
 
 const getAllBooks = () => {
   return axios.get("/books");
@@ -25,5 +33,7 @@ export {
   getBookById,
   createBook,
   updateBook,
-  deleteBook
+  deleteBook,
+  registerUser,
+  loginUser,
 };
