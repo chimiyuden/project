@@ -27,7 +27,7 @@ const Login = () => {
       console.log(response.data);
       setError("");
       setFormData({ ...initialData });
-      localStorage.setItem("Tensal-token", response.data.token);
+      localStorage.setItem("seng-token", response.data.token);
 
       await getLoggedInUser();
       navigate("/");
