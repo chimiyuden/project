@@ -17,13 +17,15 @@ const ProtectedRoutes = ({ children }) => {
   return <Navigate to={"/login"} />;
 };
 
+
+
 const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/register" element={<Profile />} />
+      <Route path="/profile" element={<Profile />} />
     </Routes>
   );
 };
