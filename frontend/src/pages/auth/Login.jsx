@@ -1,7 +1,8 @@
-import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
+import axios from "axios";
+import { loginUser } from "../../api/api";
 
 const initialData = {
   email: "",
@@ -20,14 +21,11 @@ const Login = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const response = await axios.post(
-        "http://localhost:3000/auth/signin",
-        formData
-      );
-      console.log(response.data);
+      const response = await loginUser(formData);
+
       setError("");
       setFormData({ ...initialData });
-      localStorage.setItem("seng-token", response.data.token);
+      localStorage.setItem("mylibrary-token", response.data.token);
 
       await getLoggedInUser();
       navigate("/");
