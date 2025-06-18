@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { getAllBooks } from "../api/api";
-import "./Library.css"; // Make sure to import the CSS file
 
 const Home = () => {
   const [books, setBooks] = useState([]);
