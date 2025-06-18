@@ -82,9 +82,19 @@ const signOut = async (req, res) => {
     message: "Signout succesfully",
   });
 };
+const getLoggedInUser = async (req, res) => {
+  const user = req.user;
+  const userData = await authService.getLoggedInUser(user._id);
+
+  res.status(200).json({
+    message: `User fetched successfully`,
+    user: userData,
+  });
+};
 
 module.exports = {
   signIn,
   signUp,
   signOut,
+  getLoggedInUser,
 };

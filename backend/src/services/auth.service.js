@@ -43,8 +43,14 @@ const signOut = async (token) => {
   await newToken.save();
 };
 
+const getLoggedInUser = async (userId) => {
+  const user = await User.findById(userId, { password: 0 }); //0mean exlude only this dnt show password :1 mean includes only this
+  return user;
+};
+
 module.exports = {
   signIn,
   signUp,
   signOut,
+  getLoggedInUser,
 };
