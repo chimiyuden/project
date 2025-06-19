@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../contexts/AuthContext";
 import { getAllBooks } from "../api/api";
+import Nav from "../components/Nav";
 
 const Home = () => {
   const [books, setBooks] = useState([]);
   const [isDialogOpen, setDialogOpen] = useState(false);
   const [currentBook, setCurrentBook] = useState(null);
-  const { user, logout } = useAuth();
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -15,10 +14,6 @@ const Home = () => {
     };
     fetchBooks();
   }, []);
-
-  const handleLogout = () => {
-    logout();
-  };
 
   const handleAddBook = () => {
     setCurrentBook(null);
@@ -49,13 +44,7 @@ const Home = () => {
 
   return (
     <div className="container">
-      <nav>
-        <div>MyLibrary</div>
-        <div>
-          <span>{user?.name || "User"}</span>
-          <button onClick={handleLogout}>Logout</button>
-        </div>
-      </nav>
+      <Nav />
 
       <div>
         <div className="library-header">
