@@ -440,3 +440,50 @@ form h2 {
     padding: 1.5rem;
   }
 }
+
+.profile-page {
+  padding: 2rem;
+  background-color: #f9f9f9;
+}
+
+.profile-form {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.profile-title {
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-field {
+  margin-bottom: 1rem;
+}
+
+.profile-label {
+  font-weight: bold;
+  color: #333;
+}
+
+.profile-value {
+  color: #555;
+  font-size: 1rem;
+  margin-top: 5px;
+}
+
+.no-border {
+  background: transparent;
+  border: none;
+  padding-left: 0;
+}
