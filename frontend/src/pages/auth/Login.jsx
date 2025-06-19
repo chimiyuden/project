@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
-import axios from "axios";
 import { loginUser } from "../../api/api";
+import "./Login.css"; // Make sure this path is correct
 
 const initialData = {
   email: "",
@@ -18,6 +18,7 @@ const Login = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
@@ -31,39 +32,50 @@ const Login = () => {
       navigate("/");
     } catch (error) {
       console.error(error);
-      setError(error.response?.data?.message || "some error occured");
+      setError(error.response?.data?.message || "Some error occurred");
     }
   };
+
   return (
     <div className="login-container">
       <form onSubmit={handleSubmit} className="login-form">
-        <h2 className="login-title">Login</h2>
-        <label>
-          <label>
-            Email
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <label>
-            Password
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
-          </label>
-        </label>
-        {error && <p className="register-error"> {error}</p>}
-        <button type="submit">Login</button>
-        <p className="login-link">
-          Account doesnt exist? <Link to="/register"> Register</Link>
+        <h2 className="login-title">Welcome Back</h2>
+
+        <div className="input-group">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="input-group">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        {error && <p className="error-message">{error}</p>}
+
+        <button type="submit" className="login-button">
+          Login
+        </button>
+
+        <p className="redirect-text">
+          Don't have an account?{" "}
+          <Link to="/register" className="register-link">
+            Register
+          </Link>
         </p>
       </form>
     </div>
