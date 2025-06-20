@@ -1,15 +1,13 @@
 const jwt = require("jsonwebtoken");
 const { jwtSecret } = require("../configs");
 
-const JWT_SECRET = jwtSecret;
-
 const createJWTToken = (data) => {
-  return jwt.sign(data, JWT_SECRET);
+  return jwt.sign(data, jwtSecret);
 };
 
 const verifyJWTToken = (token) => {
   try {
-    const decoded = jwt.verify(token, JWT_SECRET);
+    const decoded = jwt.verify(token, jwtSecret);
     return decoded;
   } catch (err) {
     console.log(err);
