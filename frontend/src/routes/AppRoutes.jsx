@@ -1,11 +1,11 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import Home from "../pages";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import Loading from "../components/Loading";
 import { useAuth } from "../contexts/AuthContext";
 import Team from "../pages/About";
 import Profile from "../pages/auth/Profile";
+import Home from "../pages";
 
 const ProtectedRoutes = ({ children }) => {
   const { isLoggedIn, isLoading } = useAuth();
@@ -26,7 +26,7 @@ const AppRoutes = () => {
         path="/"
         element={
           <ProtectedRoutes>
-            <Home />
+            <Home />{" "}
           </ProtectedRoutes>
         }
       />

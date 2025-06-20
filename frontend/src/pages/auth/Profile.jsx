@@ -1,53 +1,78 @@
-import Nav from "../../components/Nav";
 import { useAuth } from "../../contexts/AuthContext";
-import { FiUser, FiMail, FiPhone, FiUsers } from "react-icons/fi";
 
 const Profile = () => {
   const { user } = useAuth();
 
   return (
-    <div className="profile-container">
-      <Nav />
-      <div className="profile-content">
-        <div className="profile-header">
-          <h1 className="profile-title">My Profile</h1>
-        </div>
+    <div className="library-container">
+      <div className="form-container">
+        <h2 className="library-title">My Profile</h2>
 
-        <div className="profile-card">
-          <div className="profile-detail-group">
-            <FiUser className="profile-icon" />
-            <span className="profile-label">Name</span>
-            <span className="profile-value">
-              {user?.name || "Not provided"}
-            </span>
-          </div>
+        <div className="book-detail-container">
+          <div className="book-detail-info">
+            <div className="form-group">
+              <label className="form-label">Name</label>
+              <p
+                className="form-input"
+                style={{
+                  background: "transparent",
+                  border: "none",
+                  paddingLeft: 0,
+                  marginTop: "5px",
+                }}
+              >
+                {user?.name || "N/A"}
+              </p>
+            </div>
 
-          <div className="profile-detail-group">
-            <FiMail className="profile-icon" />
-            <span className="profile-label">Email</span>
-            <span className="profile-value">
-              {user?.email || "Not provided"}
-            </span>
-          </div>
+            <div className="form-group">
+              <label className="form-label">Email</label>
+              <p
+                className="form-input"
+                style={{
+                  background: "transparent",
+                  border: "none",
+                  paddingLeft: 0,
+                  marginTop: "5px",
+                }}
+              >
+                {user?.email || "N/A"}
+              </p>
+            </div>
 
-          <div className="profile-detail-group">
-            <FiPhone className="profile-icon" />
-            <span className="profile-label">Phone</span>
-            <span className="profile-value">
-              {user?.phoneNumber || "Not provided"}
-            </span>
-          </div>
+            <div className="form-group">
+              <label className="form-label">Phone Number</label>
+              <p
+                className="form-input"
+                style={{
+                  background: "transparent",
+                  border: "none",
+                  paddingLeft: 0,
+                  marginTop: "5px",
+                }}
+              >
+                {user?.phoneNumber || "N/A"}
+              </p>
+            </div>
 
-          <div className="profile-detail-group">
-            <FiUsers className="profile-icon" />
-            <span className="profile-label">Gender</span>
-            <span className="profile-value">
-              {user?.gender
-                ? `${user.gender.charAt(0).toUpperCase()}${user.gender.slice(
-                    1
-                  )}`
-                : "Not provided"}
-            </span>
+            <div className="form-group">
+              <label className="form-label">Gender</label>
+              <p
+                className="form-input"
+                style={{
+                  background: "transparent",
+                  border: "none",
+                  paddingLeft: 0,
+                  marginTop: "5px",
+                }}
+              >
+                {user?.gender
+                  ? `${user.gender.charAt(0).toUpperCase()}${user.gender.slice(
+                      1
+                    )}`
+                  : "N/A"}
+              </p>
+            </div>
           </div>
         </div>
       </div>

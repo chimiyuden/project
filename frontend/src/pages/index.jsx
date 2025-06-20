@@ -1,19 +1,26 @@
 import { useEffect, useState } from "react";
-import { getAllBooks } from "../api/api";
+import { useAuth } from "../contexts/AuthContext";
+import { createBook, getAllBooks, updateBook } from "../api/api";
 import Nav from "../components/Nav";
 
 const Home = () => {
   const [books, setBooks] = useState([]);
   const [isDialogOpen, setDialogOpen] = useState(false);
   const [currentBook, setCurrentBook] = useState(null);
+  const { user, logout } = useAuth();
 
   useEffect(() => {
-    const fetchBooks = async () => {
-      const response = await getAllBooks();
-      setBooks(response.data?.books || []);
-    };
     fetchBooks();
   }, []);
+
+  const fetchBooks = async () => {
+    try {
+      const response = await getAllBooks();
+      setBooks(response.data?.books || []);
+    } catch (error) {
+      console.error("Failed to fetch books:", error);
+    }
+  };
 
   const handleAddBook = () => {
     setCurrentBook(null);
@@ -29,17 +36,30 @@ const Home = () => {
     setBooks(books.filter((book) => book._id !== id));
   };
 
-  const handleSaveBook = (bookData) => {
-    if (currentBook) {
-      setBooks(
-        books.map((book) =>
-          book._id === currentBook._id ? { ...book, ...bookData } : book
-        )
-      );
-    } else {
-      setBooks([...books, { ...bookData, _id: Date.now().toString() }]);
+  const handleSaveBook = async (bookData) => {
+    try {
+      let response;
+
+      if (currentBook) {
+        // Update existing book
+        console.log("Updating book:", currentBook._id);
+        response = await updateBook(currentBook._id, bookData);
+      } else {
+        // Create new book
+        console.log("Creating new book:", bookData);
+        response = await createBook(bookData);
+      }
+
+      if (response && response.data) {
+        // Refresh the book list from server
+        await fetchBooks();
+        // Close the dialog
+        setDialogOpen(false);
+      }
+    } catch (error) {
+      console.error("Error saving book:", error);
+      // Optionally show error to user (e.g., using a toast notification)
     }
-    setDialogOpen(false);
   };
 
   return (
@@ -106,12 +126,12 @@ const BookForm = ({ book, onSave, onClose }) => {
   });
 
   const genres = [
-    "Fiction",
-    "Non-Fiction",
     "Science Fiction",
-    "Fantasy",
     "Mystery",
+    "Fantasy",
     "Romance",
+    "Fiction",
+    "Nonfiction",
   ];
 
   const handleChange = (e) => {
