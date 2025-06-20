@@ -1,6 +1,4 @@
 /* home css */
-
-/* Base Styles */
 :root {
   --primary-color: #4a6fa5;
   --secondary-color: #166088;
@@ -439,56 +437,65 @@ form h2 {
     padding: 1.5rem;
   }
 }
-
-.profile-page {
-  padding: 2rem;
-  background-color: #f9f9f9;
+/* profile css  */
+.profile-container {
+  min-height: 100vh;
+  background-color: #f8fafc;
 }
 
-.profile-form {
-  background-color: #fff;
+.profile-content {
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 2rem;
-  border-radius: 8px;
+  padding-top: 6rem; /* Account for fixed navbar */
+}
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
 }
 
 .profile-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+}
+
+.profile-card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.profile-detail-group {
   margin-bottom: 1.5rem;
-  font-size: 1.75rem;
-}
-
-.profile-details {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
-.profile-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.profile-field {
-  margin-bottom: 1rem;
+.profile-icon {
+  color: #4a5568;
+  font-size: 1.25rem;
 }
 
 .profile-label {
-  font-weight: bold;
-  color: #333;
+  color: #4a5568;
+  font-weight: 500;
+  min-width: 120px;
 }
 
 .profile-value {
-  color: #555;
-  font-size: 1rem;
-  margin-top: 5px;
+  color: #2d3748;
+  font-weight: 400;
+  padding: 0.5rem 0;
 }
-
-.no-border {
-  background: transparent;
-  border: none;
-  padding-left: 0;
-}
-
 /* loginn css */
-/* Login.css */
+
 .login-container {
   display: flex;
   justify-content: center;

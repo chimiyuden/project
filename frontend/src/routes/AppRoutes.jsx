@@ -2,9 +2,10 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "../pages";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
-import Profile from "../pages/auth/Profile";
 import Loading from "../components/Loading";
 import { useAuth } from "../contexts/AuthContext";
+import Team from "../pages/About";
+import Profile from "../pages/auth/Profile";
 
 const ProtectedRoutes = ({ children }) => {
   const { isLoggedIn, isLoading } = useAuth();
@@ -15,7 +16,7 @@ const ProtectedRoutes = ({ children }) => {
   if (!isLoading && isLoggedIn) {
     return children;
   }
-  return <Navigate to={"/login"} />;
+  return <Navigate to={"/about"} />;
 };
 
 const AppRoutes = () => {
@@ -32,6 +33,7 @@ const AppRoutes = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/about" element={<Team />} />
     </Routes>
   );
 };

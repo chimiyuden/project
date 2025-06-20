@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { loginUser } from "../../api/api";
+import Nav from "../../components/Nav";
 
 const initialData = {
   email: "",
@@ -39,7 +40,6 @@ const Login = () => {
     <div className="login-container">
       <form onSubmit={handleSubmit} className="login-form">
         <h2 className="login-title">Welcome Back</h2>
-
         <div className="input-group">
           <label htmlFor="email">Email</label>
           <input
@@ -51,7 +51,6 @@ const Login = () => {
             required
           />
         </div>
-
         <div className="input-group">
           <label htmlFor="password">Password</label>
           <input
@@ -63,19 +62,17 @@ const Login = () => {
             required
           />
         </div>
-
         {error && <p className="error-message">{error}</p>}
-
         <button type="submit" className="login-button">
           Login
         </button>
-
         <p className="redirect-text">
           Don't have an account?{" "}
           <Link to="/register" className="register-link">
             Register
           </Link>
         </p>
+        <Link to="/about">About</Link>
       </form>
     </div>
   );
