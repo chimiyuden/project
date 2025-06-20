@@ -438,62 +438,79 @@ form h2 {
   }
 }
 /* profile css  */
+/* Profile.css */
+
 .profile-container {
   min-height: 100vh;
-  background-color: #f8fafc;
+  background-color: #f1f5f9; /* soft gray-blue */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 6rem;
 }
 
 .profile-content {
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 1000px;
   padding: 2rem;
-  padding-top: 6rem; /* Account for fixed navbar */
 }
 
 .profile-header {
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
 }
 
 .profile-title {
-  font-size: 2rem;
-  font-weight: 600;
-  color: #2d3748;
-  margin-bottom: 0.5rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
 }
 
 .profile-card {
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  padding: 2rem;
-  max-width: 600px;
-  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  padding: 2.5rem 2rem;
+  transition: box-shadow 0.3s ease;
+}
+
+.profile-card:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
 }
 
 .profile-detail-group {
-  margin-bottom: 1.5rem;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.profile-detail-group:last-child {
+  border-bottom: none;
 }
 
 .profile-icon {
-  color: #4a5568;
-  font-size: 1.25rem;
+  color: #3b82f6;
+  font-size: 1.5rem;
+  margin-top: 0.2rem;
 }
 
 .profile-label {
-  color: #4a5568;
-  font-weight: 500;
-  min-width: 120px;
+  color: #475569;
+  font-weight: 600;
+  min-width: 140px;
+  font-size: 1rem;
 }
 
 .profile-value {
-  color: #2d3748;
+  color: #334155;
   font-weight: 400;
-  padding: 0.5rem 0;
+  font-size: 1rem;
+  word-break: break-word;
 }
+
 /* loginn css */
 
 .login-container {
