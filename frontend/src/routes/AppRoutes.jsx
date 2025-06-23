@@ -1,11 +1,11 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import Login from "../pages/auth/Login";
-import Register from "../pages/auth/Register";
 import Loading from "../components/Loading";
 import { useAuth } from "../contexts/AuthContext";
-import Team from "../pages/About";
-import Profile from "../pages/auth/Profile";
-import Home from "../pages";
+import Team from "../pages/auth/about/About";
+import Profile from "../pages/auth/profile/Profile";
+import Home from "../pages/home";
+import Login from "../pages/auth/login/Login";
+import Register from "../pages/auth/register/Register";
 
 const ProtectedRoutes = ({ children }) => {
   const { isLoggedIn, isLoading } = useAuth();

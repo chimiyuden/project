@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { registerUser } from "../../api/api";
+import { registerUser } from "../../../api/api";
+import "./Register.css";
 
 const initialData = {
   name: "",

@@ -1,0 +1,223 @@
+/* about css */
+/* Professional Team Page with Featured First Member */
+:root {
+  --ivory: #fffff0;
+  --deep-navy: #0a1a2f;
+  --gold: #d4af37;
+  --slate: #4a5c6a;
+  --soft-pink: #f8d7da;
+  --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.page-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+  background: var(--ivory);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--deep-navy);
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.section-title strong {
+  font-weight: 600;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: var(--gold);
+}
+
+.section-subtitle {
+  font-size: 1.25rem;
+  color: var(--slate);
+  max-width: 700px;
+  margin: 2rem auto 0;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.team-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+/* Featured First Member (Chimi Yuden) */
+.team-member:first-child {
+  background: white;
+  border-radius: 16px;
+  padding: 4rem;
+  margin: 0 auto 4rem;
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(10, 26, 47, 0.1);
+  border-top: 5px solid var(--gold);
+  position: relative;
+  overflow: hidden;
+}
+
+.team-member:first-child::before {
+  content: "★";
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  color: var(--gold);
+  opacity: 0.3;
+}
+
+/* Regular Team Members Grid */
+.team-members-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+}
+
+.team-member {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 10px 20px rgba(10, 26, 47, 0.05);
+  transition: var(--transition);
+  text-align: center;
+}
+
+/* Profile Images */
+.profile-image-container {
+  width: 160px;
+  height: 160px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid white;
+  box-shadow: 0 8px 16px rgba(10, 26, 47, 0.1);
+  transition: var(--transition);
+}
+
+.team-member:first-child .profile-image-container {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 2rem;
+  border: 4px solid white;
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+/* Text Styles */
+.member-name {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--deep-navy);
+  margin-bottom: 0.5rem;
+}
+
+.team-member:first-child .member-name {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.member-role {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.team-member:first-child .member-role {
+  font-size: 1.2rem;
+  letter-spacing: 1.5px;
+}
+
+.member-description {
+  font-size: 1rem;
+  color: var(--slate);
+  line-height: 1.7;
+}
+
+/* Hover Effects */
+.team-member:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(10, 26, 47, 0.15);
+}
+
+.team-member:hover .profile-image {
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .page-container {
+    padding: 3rem 1.5rem;
+  }
+
+  .team-member:first-child {
+    padding: 2.5rem 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .team-member:first-child .profile-image-container {
+    width: 180px;
+    height: 180px;
+  }
+
+  .section-title {
+    font-size: 2.2rem;
+  }
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.team-member {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.team-member:first-child {
+  animation-delay: 0.1s;
+}
+.team-member:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.team-member:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.team-member:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.team-member:nth-child(5) {
+  animation-delay: 0.5s;
+}

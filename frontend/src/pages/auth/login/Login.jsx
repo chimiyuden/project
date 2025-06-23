@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../contexts/AuthContext";
-import { loginUser } from "../../api/api";
-import Nav from "../../components/Nav";
+import { useAuth } from "../../../contexts/AuthContext";
+import { loginUser } from "../../../api/api";
+import "./Login.css";
 
 const initialData = {
   email: "",

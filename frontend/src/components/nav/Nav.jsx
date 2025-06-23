@@ -153,7 +153,7 @@
 // export default Nav;
 
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 import {
   FiBook,
   FiUser,
@@ -163,6 +163,8 @@ import {
   FiSearch,
   FiHome,
 } from "react-icons/fi";
+
+import "./Nav.css";
 
 const Nav = () => {
   const navigate = useNavigate();
