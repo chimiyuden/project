@@ -1,73 +1,271 @@
-/* profile css  */
 /* Profile.css */
 
-.profile-container {
-  min-height: 100vh;
-  background-color: #f1f5f9; /* soft gray-blue */
+.library-container {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding-top: 6rem;
+  padding: 3rem 2rem;
+  background: linear-gradient(
+      rgba(255, 253, 245, 0.95),
+      rgba(255, 253, 245, 0.95)
+    ),
+    url("https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80")
+      center/cover no-repeat;
+  font-family: "EB Garamond", serif;
+  min-height: 80vh;
+  box-shadow: inset 0 0 100px 20px rgba(255, 255, 240, 0.7);
+  border-radius: 12px;
 }
 
-.profile-content {
+.form-container {
+  background: linear-gradient(
+      rgba(255, 253, 245, 0.98),
+      rgba(255, 253, 245, 0.98)
+    ),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><path d='M0,0 L20,0 L20,20 L0,20 Z' fill='none' stroke='%236b4f37' stroke-width='0.5'/></svg>")
+      repeat;
+  max-width: 500px;
   width: 100%;
-  max-width: 1000px;
-  padding: 2rem;
+  padding: 3rem 2.5rem;
+  border-left: 12px solid #6b4f37;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1), inset 0 0 0 1px #b8a99a,
+    inset -40px 0 30px -20px rgba(107, 79, 55, 0.1);
+  border-radius: 0 8px 8px 0;
+  position: relative;
 }
 
-.profile-header {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.profile-title {
+.library-title {
+  font-family: "Cinzel Decorative", cursive;
   font-size: 2.5rem;
   font-weight: 700;
-  color: #1e293b;
-  margin-bottom: 0.25rem;
+  color: #6b4f37;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.05em;
+  position: relative;
 }
 
-.profile-card {
-  background-color: #ffffff;
-  border-radius: 1rem;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-  padding: 2.5rem 2rem;
-  transition: box-shadow 0.3s ease;
+.library-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #9d7a50, transparent);
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
 }
 
-.profile-card:hover {
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-}
-
-.profile-detail-group {
+.book-detail-container {
   display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid #e2e8f0;
+  flex-direction: column;
+  gap: 1.8rem;
 }
 
-.profile-detail-group:last-child {
-  border-bottom: none;
+.book-detail-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
 }
 
-.profile-icon {
-  color: #3b82f6;
-  font-size: 1.5rem;
-  margin-top: 0.2rem;
+.form-group {
+  display: flex;
+  flex-direction: column;
 }
 
-.profile-label {
-  color: #475569;
+.form-label {
   font-weight: 600;
-  min-width: 140px;
-  font-size: 1rem;
+  color: #5c4b36;
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+  user-select: none;
 }
 
-.profile-value {
-  color: #334155;
-  font-weight: 400;
-  font-size: 1rem;
-  word-break: break-word;
+.form-input {
+  background: transparent;
+  border: none;
+  padding-left: 0;
+  margin-top: 3px;
+  font-family: "EB Garamond", serif;
+  font-size: 1.15rem;
+  color: #3e352b;
+  line-height: 1.5;
+  min-height: 28px;
+  user-select: text;
+}
+
+/* Add subtle underline effect for inputs that look like text */
+.book-detail-info .form-input:not([contenteditable="true"]) {
+  border-bottom: 1.5px solid #c8a97e;
+  padding-bottom: 3px;
+  transition: border-color 0.3s ease;
+}
+
+.book-detail-info .form-input:not([contenteditable="true"]):hover {
+  border-color: #9d7a50;
+}
+
+.book-detail-info .form-input:not([contenteditable="true"]):focus {
+  outline: none;
+  border-color: #6b4f37;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .form-container {
+    padding: 2rem 1.5rem;
+    max-width: 100%;
+    border-radius: 0;
+    border-left-width: 8px;
+  }
+
+  .library-title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-label {
+    font-size: 1rem;
+  }
+
+  .form-input {
+    font-size: 1rem;
+  }
+}
+
+/* Responsive adjustments */
+
+/* Large desktops (1200px and up) */
+@media (min-width: 1200px) {
+  .library-container {
+    padding: 4rem 3rem;
+    min-height: 90vh;
+  }
+
+  .form-container {
+    max-width: 520px;
+    padding: 3.5rem 3rem;
+    border-left-width: 14px;
+    border-radius: 0 12px 12px 0;
+  }
+
+  .library-title {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .form-label {
+    font-size: 1.15rem;
+  }
+
+  .form-input {
+    font-size: 1.25rem;
+  }
+}
+
+/* Medium desktops / laptops (992px - 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .library-container {
+    padding: 3.5rem 2.5rem;
+  }
+
+  .form-container {
+    max-width: 480px;
+    padding: 3rem 2.5rem;
+    border-left-width: 12px;
+  }
+
+  .library-title {
+    font-size: 2.6rem;
+    margin-bottom: 2.7rem;
+  }
+
+  .form-label {
+    font-size: 1.1rem;
+  }
+
+  .form-input {
+    font-size: 1.15rem;
+  }
+}
+
+/* Tablets (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .library-container {
+    padding: 3rem 2rem;
+  }
+
+  .form-container {
+    max-width: 420px;
+    padding: 2.8rem 2.2rem;
+    border-left-width: 10px;
+  }
+
+  .library-title {
+    font-size: 2.3rem;
+    margin-bottom: 2.2rem;
+  }
+
+  .form-label {
+    font-size: 1rem;
+  }
+
+  .form-input {
+    font-size: 1.1rem;
+  }
+}
+
+/* Small tablets / large phones (600px - 767px) */
+@media (min-width: 600px) and (max-width: 767px) {
+  .library-container {
+    padding: 2.5rem 1.8rem;
+  }
+
+  .form-container {
+    max-width: 360px;
+    padding: 2.5rem 2rem;
+    border-left-width: 9px;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .library-title {
+    font-size: 2rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .form-label {
+    font-size: 0.95rem;
+  }
+
+  .form-input {
+    font-size: 1rem;
+  }
+}
+
+/* Small phones (below 600px) */
+@media (max-width: 599px) {
+  .library-container {
+    padding: 1.5rem 1rem;
+    min-height: auto;
+    border-radius: 0;
+  }
+
+  .form-container {
+    max-width: 100%;
+    padding: 2rem 1.5rem;
+    border-left-width: 8px;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .library-title {
+    font-size: 1.7rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .form-label {
+    font-size: 0.9rem;
+  }
+
+  .form-input {
+    font-size: 0.95rem;
+  }
 }

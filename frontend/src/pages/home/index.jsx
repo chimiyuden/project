@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
-import { createBook, getAllBooks, updateBook } from "../../api/api";
+import { createBook, deleteBook, getAllBooks, updateBook } from "../../api/api";
 import Nav from "../../components/nav/Nav";
 import "./index.css";
 
@@ -8,7 +8,7 @@ const Home = () => {
   const [books, setBooks] = useState([]);
   const [isDialogOpen, setDialogOpen] = useState(false);
   const [currentBook, setCurrentBook] = useState(null);
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
 
   useEffect(() => {
     fetchBooks();
@@ -34,32 +34,38 @@ const Home = () => {
   };
 
   const handleDeleteBook = async (id) => {
-    setBooks(books.filter((book) => book._id !== id));
+    try {
+      await deleteBook(id);
+      setBooks(books.filter((book) => book._id !== id));
+    } catch (error) {
+      console.error("Failed to delete book:", error);
+    }
   };
 
   const handleSaveBook = async (bookData) => {
     try {
       let response;
-
       if (currentBook) {
-        // Update existing book
-        console.log("Updating book:", currentBook._id);
-        response = await updateBook(currentBook._id, bookData);
-      } else {
-        // Create new book
-        console.log("Creating new book:", bookData);
-        response = await createBook(bookData);
-      }
+        const updatedReadBy = bookData.completed
+          ? [...new Set([...(currentBook.readBy || []), user._id])]
+          : (currentBook.readBy || []).filter((id) => id !== user._id);
 
+        response = await updateBook(currentBook._id, {
+          ...bookData,
+          readBy: updatedReadBy,
+        });
+      } else {
+        response = await createBook({
+          ...bookData,
+          readBy: bookData.completed ? [user._id] : [],
+        });
+      }
       if (response && response.data) {
-        // Refresh the book list from server
         await fetchBooks();
-        // Close the dialog
         setDialogOpen(false);
       }
     } catch (error) {
       console.error("Error saving book:", error);
-      // Optionally show error to user (e.g., using a toast notification)
     }
   };
 
@@ -76,16 +82,39 @@ const Home = () => {
         <div className="book-list">
           {books.length > 0 ? (
             books.map((book) => (
-              <div key={book._id} className="book-card">
+              <div
+                key={book._id}
+                className={`book-card ${
+                  book.readBy?.includes(user._id) ? "read-by-user" : ""
+                }`}
+              >
+                <div className="spine-crease"></div>
+
+                <div className="page left-page"></div>
+                <div className="page right-page"></div>
+
                 <div className="book-info">
                   <h3 className="book-title">{book.title}</h3>
-                  <p className="book-author">by {book.author}</p>
+                  <p className="book-author">{book.author}</p>
                   <div className="book-meta">
                     <span className="book-genre">{book.genre}</span>
                     <span className="book-year">{book.year}</span>
                   </div>
-                  {book.completed && <span className="read-status">Read</span>}
+                  {book.readBy?.includes(user._id) && (
+                    <div className="read-status-container">
+                      <span className="read-status">
+                        Read by {user.name || "you"}
+                      </span>
+                      {book.readBy.length > 1 && (
+                        <span className="read-count">
+                          {book.readBy.length - 1} other
+                          {book.readBy.length > 2 ? "s" : ""} also read this
+                        </span>
+                      )}
+                    </div>
+                  )}
                 </div>
+
                 <div className="book-actions">
                   <button onClick={() => handleEditBook(book)}>Edit</button>
                   <button onClick={() => handleDeleteBook(book._id)}>
@@ -108,6 +137,7 @@ const Home = () => {
                 book={currentBook}
                 onSave={handleSaveBook}
                 onClose={() => setDialogOpen(false)}
+                currentUser={user._id}
               />
             </div>
           </div>
@@ -117,13 +147,13 @@ const Home = () => {
   );
 };
 
-const BookForm = ({ book, onSave, onClose }) => {
+const BookForm = ({ book, onSave, onClose, currentUser }) => {
   const [formData, setFormData] = useState({
     title: book?.title || "",
     author: book?.author || "",
     genre: book?.genre || "Fiction",
     year: book?.year || "",
-    completed: book?.completed || false,
+    completed: book?.readBy?.includes(currentUser) || false,
   });
 
   const genres = [
@@ -133,6 +163,7 @@ const BookForm = ({ book, onSave, onClose }) => {
     "Romance",
     "Fiction",
     "Nonfiction",
+    "Thriller",
   ];
 
   const handleChange = (e) => {
@@ -203,13 +234,14 @@ const BookForm = ({ book, onSave, onClose }) => {
       </div>
 
       <div className="form-group checkbox">
-        <label>
+        <label className={formData.completed ? "checked" : ""}>
           <input
             type="checkbox"
             name="completed"
             checked={formData.completed}
             onChange={handleChange}
           />
+          <span className="checkmark"></span>
           I've read this book
         </label>
       </div>

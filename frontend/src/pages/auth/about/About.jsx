@@ -12,71 +12,114 @@ const teamMembers = [
     name: "Chimi Yuden",
     role: "Full-Stack Developer",
     description:
-      "Specializes in both frontend (React) and backend (Node.js) development",
+      "Specializes in both frontend (React) and backend (Node.js) development.",
+    skills: ["React", "Node.js", "MongoDB", "Express"],
+    contributions: [
+      "Led development of the user authentication system",
+      "Integrated RESTful APIs for book CRUD operations",
+    ],
     image: chimiPhoto,
   },
   {
     name: "Tenzin",
     role: "Backend Developer",
     description:
-      "Focuses on server-side logic, database interactions, and API development",
+      "Focuses on server-side logic, database interactions, and API development.",
+    skills: ["Node.js", "Express", "MongoDB", "Postman"],
+    contributions: [
+      "Built the book and user API routes",
+      "Implemented token-based authentication",
+    ],
     image: tenzinPhoto,
   },
   {
     name: "Karma",
     role: "Backend Developer",
-    description: "Expert in database architecture and server optimization",
+    description: "Expert in database architecture and server optimization.",
+    skills: ["MongoDB", "Mongoose", "Docker", "API Security"],
+    contributions: [
+      "Optimized database queries and indexing",
+      "Helped with secure environment setup using .env",
+    ],
     image: karmaPhoto,
   },
   {
     name: "Kuenzang",
     role: "Frontend Developer",
     description:
-      "Specializes in building responsive and accessible user interfaces",
+      "Specializes in building responsive and accessible user interfaces.",
+    skills: ["HTML", "CSS", "JavaScript", "React"],
+    contributions: [
+      "Designed the landing and dashboard pages",
+      "Integrated reusable React components",
+    ],
     image: kuenzangPhoto,
   },
   {
     name: "Tshering",
     role: "CSS Specialist",
     description:
-      "Focuses on styling, animations, and creating visually appealing interfaces",
+      "Focuses on styling, animations, and creating visually appealing interfaces.",
+    skills: ["CSS3", "Animations", "Tailwind", "Responsive Design"],
+    contributions: [
+      "Designed team and about pages",
+      "Implemented animations and hover effects",
+    ],
     image: tsheringPhoto,
   },
 ];
 
 const Team = () => {
   return (
-    <div className="page-container">
+    <>
       <Nav />
-
-      <div className="section-header">
-        <h1 className="section-title">Meet Our Team</h1>
-        <p className="section-subtitle">
-          The talented individuals who make our library platform exceptional
-        </p>
-      </div>
-
       <div className="team-container">
         {teamMembers.map((member, index) => (
-          <div key={index} className="team-member">
-            <div className="profile-image-container">
+          <div
+            key={index}
+            className={`team-member-horizontal ${
+              index % 2 === 0 ? "left-image" : "right-image"
+            }`}
+          >
+            <div className="profile-image-container-horizontal">
               <img
                 src={member.image}
                 alt={member.name}
-                className="profile-image"
+                className="profile-image-horizontal"
                 onError={(e) => {
                   e.target.onerror = null;
                   e.target.src = "/images/default-profile.png";
                 }}
               />
             </div>
-            <h3 className="member-name">{member.name}</h3>
-            <p className="member-role">{member.role}</p>
-            <p className="member-description">{member.description}</p>
+
+            <div className="member-details">
+              <h3 className="member-name">{member.name}</h3>
+              <p className="member-role">{member.role}</p>
+              <p className="member-description">{member.description}</p>
+
+              <div className="member-skills">
+                <strong>Skills:</strong>
+                <ul>
+                  {member.skills.map((skill, i) => (
+                    <li key={i}>{skill}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="member-contributions">
+                <strong>Contributions:</strong>
+                <ul>
+                  {member.contributions.map((task, i) => (
+                    <li key={i}>{task}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 
