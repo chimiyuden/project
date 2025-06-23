@@ -1,9 +1,11 @@
-import Nav from "../components/Nav";
-import chimiPhoto from "../assets/chimi.png";
-import tenzinPhoto from "../assets/tenzin.png";
-import karmaPhoto from "../assets/karma.png";
-import kuenzangPhoto from "../assets/kuenzang.png";
-import tsheringPhoto from "../assets/tshering.png";
+import Nav from "../../../components/nav/Nav";
+import chimiPhoto from "../../../assets/chimi.png";
+import tenzinPhoto from "../../../assets/tenzin.png";
+import karmaPhoto from "../../../assets/karma.png";
+import kuenzangPhoto from "../../../assets/kuenzang.png";
+import tsheringPhoto from "../../../assets/tshering.png";
+
+import "./About.css";
 
 const teamMembers = [
   {

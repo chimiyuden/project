@@ -1,4 +1,5 @@
-import { useAuth } from "../../contexts/AuthContext";
+import { useAuth } from "../../../contexts/AuthContext";
+import "./Profile.css";
 
 const Profile = () => {
   const { user } = useAuth();

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../contexts/AuthContext";
-import { createBook, getAllBooks, updateBook } from "../api/api";
-import Nav from "../components/Nav";
+import { useAuth } from "../../contexts/AuthContext";
+import { createBook, getAllBooks, updateBook } from "../../api/api";
+import Nav from "../../components/nav/Nav";
+import "./index.css";
 
 const Home = () => {
   const [books, setBooks] = useState([]);
