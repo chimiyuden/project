@@ -1,14 +1,22 @@
 import { useEffect, useState } from "react";
 import AppRoutes from "./routes/AppRoutes";
+import axios from "./configs/axiosConfig";
 // import "./App.css";
 
 function App() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000")
-      .then((res) => res.json())
-      .then((data) => setData(data));
+    axios
+      .get("http://localhost:3000", {
+        withCredentials: true,
+      })
+      .then((response) => {
+        setData(response.data.meassage);
+      })
+      .catch((error) => {
+        console.error("Error", error);
+      });
   }, []);
 
   return (
