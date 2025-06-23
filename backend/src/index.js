@@ -3,13 +3,14 @@ const cors = require("cors");
 const booksRoutes = require("./routes/books.route");
 const authRoutes = require("./routes/auth.route");
 const connectMongoDB = require("./db/mongo.db");
+const { frontendUrl } = require("./configs");
 
 const app = express();
 const PORT = 3000;
 
 connectMongoDB();
 
-app.use(cors());
+app.use(cors({ origin: frontendUrl, credentials: true }));
 app.use(express.json());
 
 app.use("/books", booksRoutes);
