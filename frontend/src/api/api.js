@@ -7,6 +7,9 @@ const registerUser = async (formData) => {
 const loginUser = async (formData) => {
   return axios.post("/auth/signin", formData);
 };
+const getloginUser = async () => {
+  return axios.get("/auth/loginuser");
+};
 
 const getAllBooks = () => {
   return axios.get("/books");
@@ -36,4 +39,5 @@ export {
   deleteBook,
   registerUser,
   loginUser,
+  getloginUser,
 };
