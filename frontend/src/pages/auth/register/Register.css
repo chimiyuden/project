@@ -1,115 +1,486 @@
-/* css for register */
-/* General Layout */
+/* Book Nook Theme */
+:root {
+  --primary-color: #6b4f37; /* Rich leather binding */
+  --primary-hover: #543c28;
+  --secondary-color: #8c7b6b; /* Aged paper edges */
+  --accent-color: #9d7a50; /* Gilded title highlights */
+  --text-color: #3e352b; /* Ink color */
+  --light-gray: #f4ede4; /* Cream paper */
+  --medium-gray: #e0d6c9; /* Light parchment */
+  --border-color: #b8a99a; /* Deckled edges */
+  --error-color: #a63d40; /* Red library stamp */
+  --success-color: #5a724b; /* Green approval stamp */
+  --transition-speed: 0.4s;
+  --paper-texture: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="%23b8a99a" stroke-width="0.3" stroke-dasharray="1,3" opacity="0.25"/></svg>');
+  --book-pattern: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path d="M0,0 L20,0 L20,20 L0,20 Z" fill="none" stroke="%236b4f37" stroke-width="0.5"/></svg>');
+}
+
+/* Personal Library Background */
 .library-container {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f4f6f8;
-  padding: 2rem;
+  padding: 3rem 2rem;
+  position: relative;
+  overflow: hidden;
+  background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIXUVTIvJM2G0jOlxds8WajcTh9YEMngld2Q&s")
+    center/cover no-repeat fixed;
+  font-family: "EB Garamond", serif;
+  color: var(--text-color);
+  /* subtle overlay to soften background */
+}
+.library-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(244, 237, 228, 0.85); /* subtle cream overlay */
+  pointer-events: none;
+  z-index: 0;
 }
 
-/* Form Container */
+/* Floating Book Decorations */
+.floating-book {
+  position: absolute;
+  width: 60px;
+  height: 80px;
+  background: linear-gradient(15deg, var(--primary-color), var(--primary-hover)),
+    var(--book-pattern);
+  border-radius: 2px 6px 6px 2px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2),
+    inset -5px 0 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-color);
+  font-size: 24px;
+  opacity: 0;
+  transform: translateY(20px) rotate(-5deg);
+  animation: floatIn 1s ease-out forwards;
+  z-index: 1;
+  user-select: none;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.1));
+}
+
+@keyframes floatIn {
+  to {
+    opacity: 0.85;
+    transform: translateY(0) rotate(-5deg);
+  }
+}
+
+/* Library Card Form - Styled as Open Book */
 .form-container {
-  background: #fff;
-  padding: 2.5rem;
-  border-radius: 10px;
+  position: relative;
+  background: linear-gradient(
+      rgba(255, 251, 240, 0.95),
+      rgba(255, 251, 240, 0.95)
+    ),
+    var(--paper-texture);
+  padding: 2.5rem 3rem 2.5rem 4rem;
+  border-radius: 0 4px 4px 0;
   max-width: 480px;
   width: 100%;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.12),
+    inset 0 0 0 1px var(--border-color),
+    inset -40px 0 30px -20px rgba(107, 79, 55, 0.12);
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 0.8s ease;
+  border-left: 8px solid var(--primary-color);
+  z-index: 10;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--text-color);
 }
 
-/* Title */
+/* Book Spine Effect */
+.form-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -8px;
+  width: 8px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    var(--primary-color),
+    var(--primary-color) 20%,
+    var(--accent-color) 20%,
+    var(--accent-color) 25%,
+    var(--primary-color) 25%,
+    var(--primary-color) 45%,
+    var(--accent-color) 45%,
+    var(--accent-color) 50%,
+    var(--primary-color) 50%,
+    var(--primary-color) 70%,
+    var(--accent-color) 70%,
+    var(--accent-color) 75%,
+    var(--primary-color) 75%
+  );
+  box-shadow: inset -2px 0 5px rgba(0, 0, 0, 0.25);
+}
+
+/* Library Card Stamp */
+.form-container::after {
+  content: "EX LIBRIS";
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-family: "Times New Roman", serif;
+  font-size: 1rem;
+  color: var(--error-color);
+  opacity: 0.3;
+  transform: rotate(-12deg);
+  font-weight: 700;
+  letter-spacing: 1.3px;
+  font-style: italic;
+  user-select: none;
+}
+
+/* Bookish Typography */
 .library-title {
   text-align: center;
-  font-size: 1.8rem;
-  margin-bottom: 1.8rem;
-  color: #333;
+  font-size: 2.3rem;
+  margin-bottom: 2.4rem;
+  color: var(--primary-color);
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 0.6rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s 0.3s ease-out forwards;
+  font-family: "Cinzel Decorative", cursive;
+  letter-spacing: 0.7px;
+  text-shadow: 0 2px 4px rgba(157, 122, 80, 0.3);
 }
 
-/* Form Groups */
-.form-group {
-  margin-bottom: 1.2rem;
+.library-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 3.5px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-color),
+    transparent
+  );
+  border-radius: 8px;
 }
 
-.form-label {
-  display: block;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: #444;
-}
-
+/* Form Elements - Styled as Book Pages */
 .form-input {
   width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 1rem;
-  transition: border-color 0.3s ease;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0;
+  font-size: 1.05rem;
+  transition: all var(--transition-speed) ease;
+  background-color: rgba(255, 253, 248, 0.9);
+  color: var(--text-color);
+  box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.06);
+  font-family: "EB Garamond", serif;
+  border-bottom: 2.5px solid var(--accent-color);
+  border-left: 1.5px solid var(--medium-gray);
+  letter-spacing: 0.02em;
+  font-weight: 500;
+}
+
+.form-input::placeholder {
+  color: var(--secondary-color);
+  font-style: italic;
 }
 
 .form-input:focus {
-  border-color: #007bff;
+  border-color: var(--accent-color);
   outline: none;
+  background-color: #fffdfa;
+  box-shadow: 0 0 0 3px var(--accent-color), inset 0 1px 5px rgba(0, 0, 0, 0.15);
 }
 
-/* Gender Radio Options */
-.radio-options label {
-  font-weight: 500;
-  color: #333;
+/* Bookmark Tabs */
+.form-group {
+  position: relative;
+  margin-bottom: 1.3rem;
 }
 
-/* Error Message */
-.register-error {
-  color: #d93025;
-  background: #ffe6e6;
-  padding: 0.75rem;
-  border-radius: 6px;
-  margin-top: 1rem;
-  text-align: center;
-  font-size: 0.95rem;
+.form-group::before {
+  content: "";
+  position: absolute;
+  left: -16px;
+  top: 12px;
+  width: 14px;
+  height: 28px;
+  background: var(--accent-color);
+  clip-path: polygon(0 0, 100% 12%, 100% 88%, 0 100%);
+  opacity: 0.75;
+  box-shadow: 1px 1px 5px rgba(157, 122, 80, 0.2);
+  border-radius: 0 4px 4px 0;
 }
 
-/* Buttons */
-.button {
-  padding: 0.75rem;
-  width: 100%;
-  font-size: 1rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
+/* Checkout Button - Styled as Bookplate */
 .primary-button {
-  background-color: #007bff;
-  color: #fff;
+  background: linear-gradient(
+    to bottom,
+    var(--primary-color),
+    var(--primary-hover)
+  );
+  color: var(--light-gray);
+  border: none;
+  padding: 1.1rem 1.4rem;
+  font-size: 1.1rem;
+  letter-spacing: 1.3px;
+  font-family: "Cinzel", serif;
+  font-weight: 700;
+  position: relative;
+  transition: all var(--transition-speed) ease;
+  border-radius: 2px;
+  box-shadow: 0 3px 0 var(--primary-hover);
+  margin-top: 2rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  user-select: none;
 }
 
 .primary-button:hover {
-  background-color: #0056b3;
+  background: linear-gradient(
+    to bottom,
+    var(--primary-hover),
+    var(--primary-color)
+  );
+  transform: translateY(-3px);
+  box-shadow: 0 6px 8px rgba(84, 60, 40, 0.8);
+  color: #fff;
 }
 
-/* Link to login */
+.primary-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 var(--primary-hover);
+}
+
+/* Library Card Link */
 .login-link {
-  font-size: 0.95rem;
-  color: #333;
+  text-align: center;
+  margin-top: 1.8rem;
+  font-size: 1rem;
+  color: var(--text-color);
+  position: relative;
+  font-style: italic;
+  user-select: none;
 }
 
 .login-link a {
-  color: #007bff;
-  font-weight: 500;
+  color: var(--primary-color);
   text-decoration: none;
+  border-bottom: 2px solid var(--accent-color);
+  transition: all var(--transition-speed) ease;
+  padding-bottom: 2px;
+  font-weight: 600;
 }
 
 .login-link a:hover {
-  text-decoration: underline;
+  color: var(--primary-hover);
+  border-bottom-color: var(--primary-hover);
 }
 
-/* Responsive */
+/* Page Corner */
+.page-corner {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 52%,
+    var(--medium-gray) 52%,
+    var(--medium-gray) 100%
+  );
+  opacity: 0.55;
+  pointer-events: none;
+  border-radius: 0 0 6px 0;
+}
+
+/* Responsive Design */
 @media (max-width: 500px) {
+  .library-container {
+    padding: 1.5rem 1rem;
+  }
+
   .form-container {
-    padding: 1.5rem;
+    padding: 1.8rem 2rem 1.8rem 2.5rem;
+    border-left: 6px solid var(--primary-color);
+  }
+
+  .form-container::before {
+    left: -6px;
+    width: 6px;
+  }
+
+  .library-title {
+    font-size: 1.9rem;
+  }
+}
+
+/* Font Import */
+@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;500;600&family=EB+Garamond:wght@400;500;600;700&display=swap");
+
+/* Animation for fadeInUp */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Your existing styles (keep all above unchanged) */
+
+/* Responsive Design */
+
+/* Large desktops (1200px and up) */
+@media (min-width: 1200px) {
+  .library-container {
+    padding: 4rem 4rem;
+  }
+
+  .form-container {
+    max-width: 520px;
+    padding: 3rem 4rem 3rem 5rem;
+    border-left-width: 10px;
+    border-radius: 0 6px 6px 0;
+  }
+
+  .library-title {
+    font-size: 2.8rem;
+    margin-bottom: 3rem;
+  }
+
+  .form-input {
+    font-size: 1.15rem;
+  }
+
+  .primary-button {
+    font-size: 1.25rem;
+    padding: 1.25rem 1.8rem;
+  }
+}
+
+/* Medium desktops / laptops (992px - 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .library-container {
+    padding: 3.5rem 3rem;
+  }
+
+  .form-container {
+    max-width: 480px;
+    padding: 2.8rem 3rem 2.8rem 4rem;
+    border-left-width: 8px;
+  }
+
+  .library-title {
+    font-size: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .form-input {
+    font-size: 1.1rem;
+  }
+
+  .primary-button {
+    font-size: 1.15rem;
+    padding: 1.1rem 1.5rem;
+  }
+}
+
+/* Tablets (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .library-container {
+    padding: 3rem 2rem;
+  }
+
+  .form-container {
+    max-width: 420px;
+    padding: 2.5rem 2.5rem 2.5rem 3.5rem;
+    border-left-width: 7px;
+  }
+
+  .library-title {
+    font-size: 2.1rem;
+    margin-bottom: 2rem;
+  }
+
+  .form-input {
+    font-size: 1rem;
+  }
+
+  .primary-button {
+    font-size: 1.05rem;
+    padding: 1rem 1.3rem;
+  }
+}
+
+/* Small tablets / large phones (600px - 767px) */
+@media (min-width: 600px) and (max-width: 767px) {
+  .library-container {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .form-container {
+    max-width: 360px;
+    padding: 2rem 2rem 2rem 3rem;
+    border-left-width: 6px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .library-title {
+    font-size: 1.9rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .form-input {
+    font-size: 0.95rem;
+  }
+
+  .primary-button {
+    font-size: 1rem;
+    padding: 0.9rem 1.2rem;
+  }
+}
+
+/* Small phones (below 600px) */
+@media (max-width: 599px) {
+  .library-container {
+    padding: 1.2rem 1rem;
+  }
+
+  .form-container {
+    max-width: 100%;
+    padding: 1.5rem 1.5rem 1.5rem 2rem;
+    border-left-width: 5px;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .library-title {
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .form-input {
+    font-size: 0.9rem;
+  }
+
+  .primary-button {
+    font-size: 0.95rem;
+    padding: 0.85rem 1rem;
   }
 }
