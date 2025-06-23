@@ -46,11 +46,6 @@ const createBook = async (req, res) => {
     });
   }
 
-  // if (typeof newBook.year !== "number") {
-  //   return res.status(400).json({
-  //     message: `year should be a number`,
-  //   });
-  // }
   const createdBook = await booksService.createBook(newBook);
   res.status(201).json({ message: " New book created", book: createdBook });
 };
@@ -75,11 +70,6 @@ const updateBookById = async (req, res) => {
     });
   }
 
-  // if (typeof newBook.year !== "number") {
-  //   return res.status(400).json({
-  //     message: ` Year should be a number`,
-  //   });
-  // }
   const updateBook = await booksService.updateBookById(id, newBook);
   if (updateBook) {
     res.json({
