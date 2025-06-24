@@ -60,7 +60,7 @@ const teamMembers = [
     role: "CSS Specialist",
     description:
       "Focuses on styling, animations, and creating visually appealing interfaces.",
-    skills: ["CSS3", "Animations", "Tailwind", "Responsive Design"],
+    skills: ["CSS", "Animations", "Responsive Design"],
     contributions: [
       "Designed team and about pages",
       "Implemented animations and hover effects",
