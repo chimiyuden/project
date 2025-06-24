@@ -5,7 +5,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import "./Home.css";
 
 const Home = () => {
-  const { user, isLoading } = useAuth() || {};
+  const { user, isLoading, isLoggedIn } = useAuth() || {};
 
   console.log("User from context:", user);
 
@@ -27,7 +27,7 @@ const Home = () => {
       <Nav />
 
       <div className="home-container">
-        {username ? (
+        {isLoggedIn ? (
           <>
             <h1 className="home-heading">📚 Welcome back, {username}!</h1>
             <p className="home-subtext">Jump back into your book collection.</p>
