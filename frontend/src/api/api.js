@@ -11,6 +11,9 @@ const getloginUser = async () => {
   return axios.get("/auth/loginuser");
 };
 
+const deleteUser = async () => {
+  return axios.delete("/auth/signout");
+};
 const getAllBooks = () => {
   return axios.get("/books");
 };
@@ -38,6 +41,7 @@ export {
   updateBook,
   deleteBook,
   registerUser,
+  deleteUser,
   loginUser,
   getloginUser,
 };

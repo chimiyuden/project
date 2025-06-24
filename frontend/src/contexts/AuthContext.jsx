@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
-import { getloginUser } from "../api/api";
+import { deleteUser, getloginUser } from "../api/api";
 
 const AuthContext = createContext();
 
@@ -44,11 +44,7 @@ export const AuthProvider = ({ children }) => {
         setloading(false);
         return;
       }
-      await axios.delete("http://localhost:3000/auth/signout", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await deleteUser();
       setLoggedIn(false);
       setUser({});
       localStorage.setItem("mylibrary-token", "");

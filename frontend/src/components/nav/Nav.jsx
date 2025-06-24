@@ -21,8 +21,8 @@ const Nav = () => {
     setMenuOpen(false);
   };
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    await logout();
     navigate("/");
     setMenuOpen(false);
   };
