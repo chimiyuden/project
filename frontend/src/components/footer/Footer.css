@@ -1,0 +1,230 @@
+.app-footer {
+  background-color: #2b2b2b;
+  color: #e6d8b0;
+  font-family: "Georgia", serif;
+  padding: 3rem 2rem 1rem;
+  font-size: 0.9rem;
+  border-top: 2px solid #7a6245;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto 1.5rem;
+}
+
+.footer-section {
+  flex: 1 1 250px;
+  min-width: 220px;
+}
+
+.footer-heading {
+  font-size: 1.8rem;
+  margin-bottom: 0.8rem;
+  color: #c1a66e;
+  font-weight: bold;
+}
+
+.footer-subheading {
+  font-size: 1.2rem;
+  margin-bottom: 0.6rem;
+  color: #b4975a;
+  font-weight: 600;
+  border-bottom: 1px solid #7a6245;
+  padding-bottom: 0.4rem;
+}
+
+.footer-description {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  color: #d7caa6;
+}
+
+.footer-links,
+.footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-link {
+  color: #d7caa6;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #c1a66e;
+  text-decoration: underline;
+}
+
+.footer-contact-link {
+  color: #d7caa6;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.footer-contact-link:hover {
+  color: #c1a66e;
+}
+
+.contact-icon {
+  color: #c1a66e;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-link {
+  color: #d7caa6;
+  transition: color 0.3s ease;
+}
+
+.social-link:hover {
+  color: #c1a66e;
+}
+
+.footer-bottom {
+  border-top: 1px solid #7a6245;
+  padding-top: 1rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #b5a67a;
+}
+
+.openlibrary-link {
+  color: #b4975a;
+  margin-left: 0.3rem;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.openlibrary-link:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+  }
+}
+
+/* === Responsive Design === */
+
+/* Large desktops (1200px and up) */
+@media (min-width: 1200px) {
+  .login-form {
+    max-width: 450px;
+    padding: 3.5rem 3rem;
+    border-left-width: 18px;
+  }
+
+  .login-title {
+    font-size: 2.8rem;
+  }
+
+  .login-button {
+    font-size: 1.3rem;
+    padding: 1.2rem 0;
+  }
+}
+
+/* Medium desktops / laptops (992px - 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .login-form {
+    max-width: 420px;
+    padding: 3rem 2.5rem;
+    border-left-width: 16px;
+  }
+
+  .login-title {
+    font-size: 2.4rem;
+  }
+
+  .login-button {
+    font-size: 1.2rem;
+    padding: 1.1rem 0;
+  }
+}
+
+/* Tablets (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .login-form {
+    max-width: 380px;
+    padding: 2.8rem 2.2rem;
+    border-left-width: 14px;
+  }
+
+  .login-title {
+    font-size: 2.1rem;
+  }
+
+  .login-button {
+    font-size: 1.1rem;
+    padding: 1rem 0;
+  }
+}
+
+/* Small tablets / large phones (500px - 767px) */
+@media (min-width: 500px) and (max-width: 767px) {
+  .login-form {
+    max-width: 320px;
+    padding: 2.5rem 2rem;
+    border-left-width: 12px;
+  }
+
+  .login-title {
+    font-size: 1.9rem;
+  }
+
+  .login-button {
+    font-size: 1rem;
+    padding: 0.95rem 0;
+  }
+}
+
+/* Small phones (below 500px) */
+@media (max-width: 499px) {
+  .login-container {
+    padding: 1rem;
+  }
+
+  .login-form {
+    padding: 2rem 1.5rem;
+    max-width: 280px;
+    border-left-width: 10px;
+    margin: 1rem auto;
+  }
+
+  .login-title {
+    font-size: 1.6rem;
+  }
+
+  .input-group input {
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .login-button {
+    font-size: 0.95rem;
+    padding: 0.85rem 0;
+  }
+
+  .login-form::before {
+    left: -10px;
+    width: 10px;
+  }
+}

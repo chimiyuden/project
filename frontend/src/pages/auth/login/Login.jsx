@@ -73,7 +73,6 @@ const Login = () => {
             Register
           </Link>
         </p>
-        <Link to="/about">About</Link>
       </form>
     </div>
   );

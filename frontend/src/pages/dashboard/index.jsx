@@ -4,7 +4,7 @@ import { createBook, deleteBook, getAllBooks, updateBook } from "../../api/api";
 import Nav from "../../components/nav/Nav";
 import "./index.css";
 
-const Home = () => {
+const DashBoard = () => {
   const [books, setBooks] = useState([]);
   const [isDialogOpen, setDialogOpen] = useState(false);
   const [currentBook, setCurrentBook] = useState(null);
@@ -70,80 +70,81 @@ const Home = () => {
   };
 
   return (
-    <div className="container">
+    <>
       <Nav />
+      <div className="container">
+        <div>
+          <div className="library-header">
+            <h1>Book Collection</h1>
+            <button onClick={handleAddBook}>Add Book</button>
+          </div>
 
-      <div>
-        <div className="library-header">
-          <h1>Book Collection</h1>
-          <button onClick={handleAddBook}>Add Book</button>
-        </div>
+          <div className="book-list">
+            {books.length > 0 ? (
+              books.map((book) => (
+                <div
+                  key={book._id}
+                  className={`book-card ${
+                    book.readBy?.includes(user._id) ? "read-by-user" : ""
+                  }`}
+                >
+                  <div className="spine-crease"></div>
 
-        <div className="book-list">
-          {books.length > 0 ? (
-            books.map((book) => (
-              <div
-                key={book._id}
-                className={`book-card ${
-                  book.readBy?.includes(user._id) ? "read-by-user" : ""
-                }`}
-              >
-                <div className="spine-crease"></div>
+                  <div className="page left-page"></div>
+                  <div className="page right-page"></div>
 
-                <div className="page left-page"></div>
-                <div className="page right-page"></div>
-
-                <div className="book-info">
-                  <h3 className="book-title">{book.title}</h3>
-                  <p className="book-author">{book.author}</p>
-                  <div className="book-meta">
-                    <span className="book-genre">{book.genre}</span>
-                    <span className="book-year">{book.year}</span>
-                  </div>
-                  {book.readBy?.includes(user._id) && (
-                    <div className="read-status-container">
-                      <span className="read-status">
-                        Read by {user.name || "you"}
-                      </span>
-                      {book.readBy.length > 1 && (
-                        <span className="read-count">
-                          {book.readBy.length - 1} other
-                          {book.readBy.length > 2 ? "s" : ""} also read this
-                        </span>
-                      )}
+                  <div className="book-info">
+                    <h3 className="book-title">{book.title}</h3>
+                    <p className="book-author">{book.author}</p>
+                    <div className="book-meta">
+                      <span className="book-genre">{book.genre}</span>
+                      <span className="book-year">{book.year}</span>
                     </div>
-                  )}
-                </div>
+                    {book.readBy?.includes(user._id) && (
+                      <div className="read-status-container">
+                        <span className="read-status">
+                          Read by {user.name || "you"}
+                        </span>
+                        {book.readBy.length > 1 && (
+                          <span className="read-count">
+                            {book.readBy.length - 1} other
+                            {book.readBy.length > 2 ? "s" : ""} also read this
+                          </span>
+                        )}
+                      </div>
+                    )}
+                  </div>
 
-                <div className="book-actions">
-                  <button onClick={() => handleEditBook(book)}>Edit</button>
-                  <button onClick={() => handleDeleteBook(book._id)}>
-                    Delete
-                  </button>
+                  <div className="book-actions">
+                    <button onClick={() => handleEditBook(book)}>Edit</button>
+                    <button onClick={() => handleDeleteBook(book._id)}>
+                      Delete
+                    </button>
+                  </div>
                 </div>
+              ))
+            ) : (
+              <div className="empty-library">
+                Your library is empty. Add some books!
               </div>
-            ))
-          ) : (
-            <div className="empty-library">
-              Your library is empty. Add some books!
+            )}
+          </div>
+
+          {isDialogOpen && (
+            <div className="dialog-overlay">
+              <div className="dialog">
+                <BookForm
+                  book={currentBook}
+                  onSave={handleSaveBook}
+                  onClose={() => setDialogOpen(false)}
+                  currentUser={user._id}
+                />
+              </div>
             </div>
           )}
         </div>
-
-        {isDialogOpen && (
-          <div className="dialog-overlay">
-            <div className="dialog">
-              <BookForm
-                book={currentBook}
-                onSave={handleSaveBook}
-                onClose={() => setDialogOpen(false)}
-                currentUser={user._id}
-              />
-            </div>
-          </div>
-        )}
       </div>
-    </div>
+    </>
   );
 };
 
@@ -256,4 +257,4 @@ const BookForm = ({ book, onSave, onClose, currentUser }) => {
   );
 };
 
-export default Home;
+export default DashBoard;

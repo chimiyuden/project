@@ -1,6 +1,6 @@
-import { useAuth } from "../../../contexts/AuthContext";
+import Nav from "../../components/nav/Nav";
+import { useAuth } from "../../contexts/AuthContext";
 import "./Profile.css";
-import Nav from "../../../components/nav/Nav";
 
 const Profile = () => {
   const { user } = useAuth();
