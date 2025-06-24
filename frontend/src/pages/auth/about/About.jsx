@@ -21,7 +21,7 @@ const teamMembers = [
     image: chimiPhoto,
   },
   {
-    name: "Tenzin",
+    name: "Tenzin Choden",
     role: "Backend Developer",
     description:
       "Focuses on server-side logic, database interactions, and API development.",
@@ -33,7 +33,7 @@ const teamMembers = [
     image: tenzinPhoto,
   },
   {
-    name: "Karma",
+    name: "Karma Deki Lhazin",
     role: "Backend Developer",
     description: "Expert in database architecture and server optimization.",
     skills: ["MongoDB", "Mongoose", "Docker", "API Security"],
@@ -44,7 +44,7 @@ const teamMembers = [
     image: karmaPhoto,
   },
   {
-    name: "Kuenzang",
+    name: "Kuenzang Dorji",
     role: "Frontend Developer",
     description:
       "Specializes in building responsive and accessible user interfaces.",
@@ -56,7 +56,7 @@ const teamMembers = [
     image: kuenzangPhoto,
   },
   {
-    name: "Tshering",
+    name: "Tshering Phuntsho",
     role: "CSS Specialist",
     description:
       "Focuses on styling, animations, and creating visually appealing interfaces.",
