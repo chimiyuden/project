@@ -8,7 +8,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000", {
+      .get("/health", {
         withCredentials: true,
       })
       .then((response) => {
